@@ -6,6 +6,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
+import org.usd232.robotics.autumnofintakes.TankDrive;
+
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -55,7 +59,10 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+        
+        Timer timer = new Timer();
+        timer.reset();
+        timer.start();
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
@@ -64,7 +71,13 @@ public class Robot extends TimedRobot {
 
     /** This function is called periodically during autonomous. */
     @Override
-    public void autonomousPeriodic() {}
+    public void autonomousPeriodic() {
+        TankDrive(-0.5, -0.5, driveSubsystem);
+        if (timer.get() > 1.5) {
+            TankDrive(0, 0, driveSubsystem);
+            timer.stop();
+        }
+    }
 
     @Override
     public void teleopInit() {
