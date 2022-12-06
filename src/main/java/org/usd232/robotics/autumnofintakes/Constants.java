@@ -34,4 +34,8 @@ public final class Constants {
         // value from bones not blockHead
         public static final double MIN_MOTOR_INPUT = 0.0;
     }
+
+    public static final class IntakeConstants {
+        public static final int INTAKE_MOTOR = 0; //FIXME: correct motor port
+    }
 }
