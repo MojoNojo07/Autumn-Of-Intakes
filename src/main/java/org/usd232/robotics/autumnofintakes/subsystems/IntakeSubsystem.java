@@ -22,6 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeMotor = LOG.catchAll(() -> new Victor(IntakeConstants.INTAKE_MOTOR));
     }
 
+    /**Runs the intake at a used-defined speed. Use negative numbers to reverse.*/
     public void intake (double speed) {
         intakeMotor.set(speed);
     }
