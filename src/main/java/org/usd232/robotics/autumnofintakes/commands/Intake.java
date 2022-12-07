@@ -26,11 +26,13 @@ public class Intake extends CommandBase {
         addRequirements(intakeSubsystem);
     }
 
+    //Calls the intake command based on the speed
     @Override
     public void execute() {
         intakeSubsystem.intake(speed);
     }
 
+    //Sets intake speed to 0 when button is released
     @Override
     public void end(boolean interrupted) {
         intakeSubsystem.intake(0.0);

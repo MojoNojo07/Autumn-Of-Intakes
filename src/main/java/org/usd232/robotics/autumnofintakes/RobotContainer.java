@@ -2,9 +2,13 @@ package org.usd232.robotics.autumnofintakes;
 
 import org.usd232.robotics.autumnofintakes.log.Logger;
 import org.usd232.robotics.autumnofintakes.subsystems.DriveSubsystem;
+import org.usd232.robotics.autumnofintakes.subsystems.IntakeSubsystem;
+
 import edu.wpi.first.wpilibj2.command.Command;
 
 import static org.usd232.robotics.autumnofintakes.Constants.*;
+
+import org.usd232.robotics.autumnofintakes.commands.Intake;
 
 // https://drive.google.com/file/d/1EBKde_UrpQlax-PRKJ1Qa8nDJuIpd07K/view?usp=sharing
 
@@ -18,6 +22,7 @@ public class RobotContainer {
     private static final Logger LOG = new Logger();
 
     public final DriveSubsystem driveSubsystem = new DriveSubsystem();
+    public final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -26,7 +31,14 @@ public class RobotContainer {
         configureButtonBindings();
     }
 
-    private void configureButtonBindings() {}
+    private void configureButtonBindings() {
+
+        //Intakes when A is held
+        IO.ManipulatorXbox_A.whileHeld(new Intake(1.0, intakeSubsystem));
+
+        //Reverses intake when B is held
+        IO.ManipulatorXbox_B.whileHeld(new Intake(-1.0, intakeSubsystem));
+    }
 
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
