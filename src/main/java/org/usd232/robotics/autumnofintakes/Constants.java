@@ -36,6 +36,6 @@ public final class Constants {
     }
 
     public static final class IntakeConstants {
-        public static final int INTAKE_MOTOR = 0; //FIXME: correct motor port
+        public static final int INTAKE_MOTOR = 1;
     }
 }
