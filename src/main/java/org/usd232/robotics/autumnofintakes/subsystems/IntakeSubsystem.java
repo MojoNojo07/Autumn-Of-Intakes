@@ -19,7 +19,7 @@ public class IntakeSubsystem extends SubsystemBase {
     private final Spark intakeMotor;
 
     public IntakeSubsystem() {
-        intakeMotor = LOG.catchAll(() -> new Spark(IntakeConstants.INTAKE_MOTOR));
+        intakeMotor = LOG.catchAll(() -> new SparkMAX(IntakeConstants.INTAKE_MOTOR)); //FIXME: Make sure that's actually how you declare a SparkMax
     }
 
     /**Runs the intake at a used-defined speed. Use negative numbers to reverse.*/
